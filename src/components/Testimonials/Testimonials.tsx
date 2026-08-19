@@ -12,18 +12,22 @@ export default function Testimonials() {
   const [canScrollRight, setCanScrollRight] = useState(true);
 
   const checkScroll = () => {
-    if (containerRef.current) {
-      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
-      setCanScrollLeft(scrollLeft > 0);
-      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 5);
-    }
+    requestAnimationFrame(() => {
+      if (containerRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = containerRef.current;
+        const newCanScrollLeft = scrollLeft > 0;
+        const newCanScrollRight = scrollLeft < scrollWidth - clientWidth - 5;
+        if (canScrollLeft !== newCanScrollLeft) setCanScrollLeft(newCanScrollLeft);
+        if (canScrollRight !== newCanScrollRight) setCanScrollRight(newCanScrollRight);
+      }
+    });
   };
 
   useEffect(() => {
     checkScroll();
-    window.addEventListener("resize", checkScroll);
+    window.addEventListener("resize", checkScroll, { passive: true });
     return () => window.removeEventListener("resize", checkScroll);
-  }, []);
+  }, [canScrollLeft, canScrollRight]);
 
   const scroll = (direction: "left" | "right") => {
     if (containerRef.current) {

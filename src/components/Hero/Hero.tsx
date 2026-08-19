@@ -102,13 +102,10 @@ export default function Hero() {
           >
             <div className="relative w-full max-w-[550px] h-[400px] sm:h-[480px]">
               {/* Decorative Blur Ambient Glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/10 rounded-full blur-[100px]" />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] bg-accent/10 rounded-full blur-3xl opacity-50 will-change-transform" />
               
               {/* Main App Window Mockup */}
-              <motion.div 
-                animate={{ y: [0, -6, 0] }}
-                transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
-                className="absolute right-4 top-4 bottom-4 left-10 sm:left-16 bg-surface rounded-2xl border border-border-subtle shadow-2xl overflow-hidden flex flex-col z-10"
+              <div className="animate-float absolute right-4 top-4 bottom-4 left-10 sm:left-16 bg-surface rounded-2xl border border-border-subtle shadow-2xl overflow-hidden flex flex-col z-10"
               >
                 {/* Header */}
                 <div className="h-10 sm:h-12 border-b border-border-subtle flex items-center px-4 justify-between bg-surface-soft">
@@ -158,7 +155,7 @@ export default function Hero() {
                      </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
               
               {/* Floating Element 1 - Advisor Profile */}
               <motion.div 
@@ -167,17 +164,11 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.6, ease: "easeOut" }}
                 className="absolute left-[-10px] sm:left-[-20px] top-12 sm:top-16 z-20"
               >
-                <motion.div
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                  className="bg-surface p-3 sm:p-4 rounded-xl shadow-xl border border-border-subtle w-[180px] sm:w-[220px] flex items-center gap-3"
+                <div className="animate-float-fast bg-surface p-3 sm:p-4 rounded-xl shadow-xl border border-border-subtle w-[180px] sm:w-[220px] flex items-center gap-3"
                 >
                   <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-surface-mint border border-border-subtle flex items-center justify-center relative shrink-0">
                     <Image src="/logos/Colour Logomark.svg" alt="Qura" width={20} height={20} className="sm:w-6 sm:h-6" />
-                    <motion.div 
-                      animate={{ scale: [1, 1.2, 1], opacity: [1, 0.8, 1] }}
-                      transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                      className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-accent-small border-2 border-white rounded-full" 
+                    <div className="animate-pulse-dot absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-accent-small border-2 border-white rounded-full" 
                     />
                   </div>
                   <div>
@@ -185,7 +176,7 @@ export default function Hero() {
                     <div className="text-xs sm:text-sm font-bold text-primary">Expert Agent</div>
                     <div className="text-[9px] sm:text-[10px] text-accent font-semibold bg-surface-pale inline-block px-1.5 py-0.5 rounded mt-0.5">Available to talk</div>
                   </div>
-                </motion.div>
+                </div>
               </motion.div>
 
               {/* Floating Element 2 - Comparison Badge */}
@@ -195,10 +186,7 @@ export default function Hero() {
                 transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
                 className="absolute right-[-10px] sm:right-[-25px] bottom-10 sm:bottom-12 z-20"
               >
-                <motion.div
-                  animate={{ y: [0, 6, 0] }}
-                  transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
-                  className="bg-primary p-3 sm:p-4 rounded-xl shadow-xl border border-white/10 text-white w-[140px] sm:w-[160px]"
+                <div className="animate-float-fast bg-primary p-3 sm:p-4 rounded-xl shadow-xl border border-white/10 text-white w-[140px] sm:w-[160px]"
                 >
                   <div className="text-[10px] sm:text-xs text-white/70 font-medium mb-1">Estimated Savings</div>
                   <div className="text-lg sm:text-xl font-bold text-accent-small mb-2">Optimized</div>
@@ -210,7 +198,7 @@ export default function Hero() {
                       className="h-full bg-accent-small rounded-full" 
                     />
                   </div>
-                </motion.div>
+                </div>
               </motion.div>
 
             </div>
@@ -221,3 +209,4 @@ export default function Hero() {
     </section>
   );
 }
+

@@ -26,14 +26,14 @@ export default function Process() {
                   <motion.div
                     key={step.step}
                     initial={{ opacity: 0, x: -20, backgroundColor: "transparent" }}
-                    whileInView={{ opacity: 1, x: 0, backgroundColor: "var(--color-surface)", padding: "12px 16px 12px 64px", borderRadius: "16px", margin: "-12px -16px -12px -16px" }}
+                    whileInView={{ opacity: 1, x: 0, backgroundColor: "var(--color-surface)" }}
                     viewport={{ once: false, amount: 0.8 }} // trigger when fully in view
                     transition={{ duration: 0.4 }}
-                    className="relative group transition-colors shadow-sm"
+                    className="relative group transition-colors shadow-sm p-4 rounded-2xl ml-[-16px] pl-[72px]"
                   >
                     {/* The active state border highlight */}
                     <motion.div 
-                      className="absolute left-[16px] top-[12px] w-10 h-10 bg-surface border-2 border-border-subtle group-hover:border-accent rounded-xl flex items-center justify-center text-text-main group-hover:text-accent font-bold text-sm shadow-sm z-10 transition-colors duration-300"
+                      className="absolute left-[16px] top-[16px] w-10 h-10 bg-surface border-2 border-border-subtle group-hover:border-accent rounded-xl flex items-center justify-center text-text-main group-hover:text-accent font-bold text-sm shadow-sm z-10 transition-colors duration-300"
                       whileInView={{ borderColor: "#3F8F68", color: "#3F8F68", scale: 1.1, backgroundColor: "#E3F3E9" }}
                       viewport={{ once: false, amount: 0.8 }}
                     >
@@ -68,7 +68,7 @@ export default function Process() {
                 <Image src="/logos/White Secondary Logo.svg" alt="Qura" width={100} height={30} className="opacity-50 h-6 w-auto" />
               </div>
               
-              <div className="bg-surface/10 backdrop-blur-md rounded-2xl p-8 border border-white/10 shadow-2xl relative mt-8">
+              <div className="bg-white/5 rounded-2xl p-8 border border-white/10 shadow-2xl relative mt-8">
                 <div className="absolute -top-4 -left-4 text-6xl text-accent-light opacity-50 font-serif">"</div>
                 <p className="text-white text-xl font-medium leading-relaxed relative z-10">
                   They explained everything so clearly, I finally felt confident making a decision about my family's future. The process was incredibly smooth.

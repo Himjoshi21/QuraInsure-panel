@@ -29,7 +29,7 @@ export default function Comparison() {
           </p>
         </div>
 
-        <div className="bg-primary/40 backdrop-blur-xl rounded-[2rem] border border-white/10/50 overflow-hidden shadow-2xl">
+        <div className="bg-white/5 rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl">
           <div className="grid grid-cols-12 border-b border-white/10 bg-primary/80 p-6 md:p-8 items-center">
             <div className="col-span-12 md:col-span-4 hidden md:block">
               <span className="text-sm uppercase tracking-wider font-bold text-white/70">Feature</span>
@@ -51,7 +51,7 @@ export default function Comparison() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="grid grid-cols-12 p-6 md:p-8 items-center hover:bg-white/10/50 transition-colors duration-300 group cursor-default"
+                className="grid grid-cols-12 p-6 md:p-8 items-center hover:bg-white/5 transition-colors duration-300 group cursor-default"
               >
                 <div className="col-span-12 md:col-span-4 mb-4 md:mb-0">
                   <span className="text-base font-medium text-white/70 group-hover:text-white transition-colors">{item.label}</span>
@@ -61,7 +61,7 @@ export default function Comparison() {
                     <motion.div 
                       initial={{ scale: 0, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 300, delay: 0.2 + (index * 0.15) }}
+                      transition={{ type: "spring", stiffness: 450, delay: (index * 0.1) + 0.15, damping: 15 }}
                       className="shrink-0 mt-0.5 transform transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-0.5"
                     >
                       <Check size={20} className="text-accent-small" />
@@ -69,7 +69,7 @@ export default function Comparison() {
                     <span className="text-sm md:text-base text-white group-hover:text-surface-pale transition-colors">{item.qura}</span>
                   </div>
                 </div>
-                <div className="col-span-6 md:col-span-4 pl-4 md:pl-0 border-l border-white/10/50 md:border-none opacity-70 group-hover:opacity-100 transition-opacity">
+                <div className="col-span-6 md:col-span-4 pl-4 md:pl-0 border-l border-white/10 md:border-none opacity-70 group-hover:opacity-100 transition-opacity">
                   <div className="flex items-start gap-2">
                     <div className="shrink-0 mt-0.5 transform transition-transform duration-300 group-hover:scale-110">
                       <X size={20} className="text-red-400" />

@@ -14,11 +14,16 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      requestAnimationFrame(() => {
+        const shouldBeScrolled = window.scrollY > 20;
+        if (isScrolled !== shouldBeScrolled) {
+          setIsScrolled(shouldBeScrolled);
+        }
+      });
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [isScrolled]);
 
   return (
     <motion.header
