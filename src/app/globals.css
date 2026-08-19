@@ -1,26 +1,73 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand Colors */
+  --color-primary: #10221B;        /* Deep Forest (Headings, Dark Sections) */
+  --color-accent: #3F8F68;         /* Primary Accent (Links, Active states) */
+  --color-cta: #72C99A;            /* Primary CTA */
+  --color-cta-hover: #5DBB87;      /* Primary CTA Hover */
+  --color-accent-small: #B9DE75;   /* Small Accent (Sparingly) */
+  
+  /* Surfaces */
+  --color-surface: #FFFFFF;        /* Pure White */
+  --color-surface-soft: #F7FAF6;   /* Warm Off-white / Hero bg */
+  --color-surface-mint: #F0F7F2;   /* Very light mint / secondary bg */
+  --color-surface-pale: #E3F3E9;   /* Pale mint / cards & badges */
+  --color-surface-sage: #EAF4ED;   /* Sage background for sections */
+  
+  /* Text */
+  --color-text-main: #10221B;      /* Main text */
+  --color-text-muted: #617069;     /* Secondary text */
+  --color-text-inverse: #FFFFFF;   /* White text on dark */
+  
+  /* Borders */
+  --color-border-subtle: #DCE8DF;  /* Subtle borders */
+  
+  --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-surface text-text-main font-sans antialiased selection:bg-surface-pale selection:text-primary;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-dot-pattern {
+    background-image: radial-gradient(circle, #DCE8DF 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .bg-grid-pattern {
+    background-image: linear-gradient(to right, #E3F3E9 1px, transparent 1px),
+      linear-gradient(to bottom, #E3F3E9 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  
+  @media (min-width: 768px) { .animate-marquee { animation-duration: 30s; } } .animate-marquee {
+    animation: marquee 45s linear infinite;
+  }
+  
+  .animate-marquee:hover {
+    animation-play-state: paused;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
