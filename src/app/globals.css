@@ -1,104 +1,51 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Colors */
-  --color-primary: #10221B;        /* Deep Forest (Headings, Dark Sections) */
-  --color-accent: #3F8F68;         /* Primary Accent (Links, Active states) */
-  --color-cta: #72C99A;            /* Primary CTA */
-  --color-cta-hover: #5DBB87;      /* Primary CTA Hover */
-  --color-accent-small: #B9DE75;   /* Small Accent (Sparingly) */
-  
-  /* Surfaces */
-  --color-surface: #FFFFFF;        /* Pure White */
-  --color-surface-soft: #F7FAF6;   /* Warm Off-white / Hero bg */
-  --color-surface-mint: #F0F7F2;   /* Very light mint / secondary bg */
-  --color-surface-pale: #E3F3E9;   /* Pale mint / cards & badges */
-  --color-surface-sage: #EAF4ED;   /* Sage background for sections */
-  
-  /* Text */
-  --color-text-main: #10221B;      /* Main text */
-  --color-text-muted: #617069;     /* Secondary text */
-  --color-text-inverse: #FFFFFF;   /* White text on dark */
-  
-  /* Borders */
-  --color-border-subtle: #DCE8DF;  /* Subtle borders */
-  
+  /* FINAL QURA PALETTE — Warm Cream Dominant, Green as Accent Only */
+  --color-primary: #101A16;
+  --color-dark: #101A16;
+  --color-accent: #3F795C;
+  --color-accent-muted: #71816A;
+  --color-cta: #78C89A;
+  --color-cta-hover: #61B783;
+  --color-accent-lime: #C6D77B;
+
+  /* bg-main = Warm Cream (60-65% of page) */
+  --color-bg-main: #F7F4EA;
+  /* surface = Pure White (20% — cards, UI, dashboard) */
+  --color-surface: #FFFFFF;
+  /* surface-sage = Pale sage (selected/featured ONLY — 7%) */
+  --color-surface-sage: #D7E3D3;
+  /* surface-mint = white alias — prevents accidental green panels */
+  --color-surface-mint: #FFFFFF;
+
+  --color-text-main: #101A16;
+  --color-text-muted: #66716B;
+  --color-text-inverse: #FFFFFF;
+
+  --color-border-subtle: #DDE0DA;
+
   --font-sans: var(--font-inter), system-ui, sans-serif;
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-  
+  html { scroll-behavior: smooth; }
   body {
-    @apply bg-surface text-text-main font-sans antialiased selection:bg-surface-pale selection:text-primary;
+    @apply bg-bg-main text-text-main font-sans antialiased selection:bg-surface-sage selection:text-primary;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+  .text-balance { text-wrap: balance; }
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, #DCE8DF 1px, transparent 1px);
+    background-image: radial-gradient(circle, #DDE0DA 1px, transparent 1px);
     background-size: 24px 24px;
   }
   .bg-grid-pattern {
-    background-image: linear-gradient(to right, #E3F3E9 1px, transparent 1px),
-      linear-gradient(to bottom, #E3F3E9 1px, transparent 1px);
+    background-image: linear-gradient(to right, #D7E3D3 1px, transparent 1px),
+      linear-gradient(to bottom, #D7E3D3 1px, transparent 1px);
     background-size: 40px 40px;
   }
-
-  @keyframes marquee {
-    0% { transform: translateX(0%); }
-    100% { transform: translateX(-50%); }
-  }
-  
-  @media (min-width: 768px) { .animate-marquee { animation-duration: 30s; } } .animate-marquee {
-    animation: marquee 45s linear infinite;
-    will-change: transform;
-  }
-  
-  .animate-marquee:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
-  }
-  @keyframes float-lg {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-  }
-  @keyframes pulse-dot {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.2); opacity: 0.8; }
-  }
-  
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-    will-change: transform;
-  }
-  .animate-float-fast {
-    animation: float 5s ease-in-out infinite;
-    will-change: transform;
-  }
-  .animate-float-lg {
-    animation: float-lg 5s ease-in-out infinite;
-    will-change: transform;
-  }
-  .animate-pulse-dot {
-    animation: pulse-dot 2s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
 }

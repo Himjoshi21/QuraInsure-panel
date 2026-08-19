@@ -27,7 +27,7 @@ export default function Trust() {
             className="flex items-center gap-16 md:gap-24 w-max opacity-70 hover:opacity-100 transition-opacity duration-300 animate-marquee"
           >
             {marqueeLogos.map((logo, idx) => (
-              <div key={`${logo.name}-${idx}`} className="relative w-28 h-10 md:w-36 md:h-12 grayscale hover:grayscale-0 transition-all duration-300">
+              <div key={`${logo.name}-${idx}`} className="relative w-28 h-10 md:w-36 md:h-12 transition-all duration-300 hover:scale-105">
                 <Image 
                   src={logo.src} 
                   alt={logo.name} 

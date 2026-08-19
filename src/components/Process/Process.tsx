@@ -1,90 +1,165 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { PROCESS_STEPS } from "@/data/content";
 import Image from "next/image";
+import { Check, ShieldCheck, HeartPulse, ShieldAlert } from "lucide-react";
 
 export default function Process() {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Opacity transforms for each step's UI on the right
+  const uiOpacity0 = useTransform(scrollYProgress, [0, 0.25, 0.3], [1, 1, 0]);
+  const uiOpacity1 = useTransform(scrollYProgress, [0.2, 0.3, 0.5, 0.6], [0, 1, 1, 0]);
+  const uiOpacity2 = useTransform(scrollYProgress, [0.45, 0.55, 0.75, 0.85], [0, 1, 1, 0]);
+  const uiOpacity3 = useTransform(scrollYProgress, [0.7, 0.8, 1], [0, 1, 1]);
+
+  // Opacity for the text descriptions on the left
+  const textOpacities = [
+    useTransform(scrollYProgress, [0, 0.1, 0.25], [1, 1, 0.3]),
+    useTransform(scrollYProgress, [0.2, 0.3, 0.4, 0.55], [0.3, 1, 1, 0.3]),
+    useTransform(scrollYProgress, [0.45, 0.55, 0.7, 0.85], [0.3, 1, 1, 0.3]),
+    useTransform(scrollYProgress, [0.75, 0.85, 1], [0.3, 1, 1])
+  ];
+
+  const scaleTransforms = [
+    useTransform(scrollYProgress, [0, 0.25, 0.3], [1, 1, 0.95]),
+    useTransform(scrollYProgress, [0.2, 0.3, 0.5, 0.6], [0.95, 1, 1, 0.95]),
+    useTransform(scrollYProgress, [0.45, 0.55, 0.75, 0.85], [0.95, 1, 1, 0.95]),
+    useTransform(scrollYProgress, [0.7, 0.8, 1], [0.95, 1, 1])
+  ];
+
   return (
-    <section id="how-it-works" className="py-24 bg-surface-soft border-t border-border-subtle">
-      <div className="container mx-auto px-6 max-w-7xl">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-6 tracking-tight">
-              How we help you get <br className="hidden md:block"/> the right insurance
+    <section id="how-it-works" ref={containerRef} className="relative bg-surface border-t border-border-subtle h-[400vh]">
+      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+        <div className="container mx-auto px-6 max-w-7xl relative w-full h-full pt-20">
+          
+          <div className="text-center md:text-left mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight">
+              How QURA works
             </h2>
-            <p className="text-lg text-text-muted mb-12 font-medium">
-              Our process is designed to be transparent, straightforward, and entirely focused on your best interests. No jargon, no hidden fees.
-            </p>
-            
-            <div className="relative">
-              {/* Vertical line connecting steps */}
-              <div className="absolute left-[35px] top-[24px] bottom-12 w-px bg-border-subtle" />
-              
-              <div className="space-y-12">
-                {PROCESS_STEPS.map((step, index) => (
-                  <motion.div
-                    key={step.step}
-                    initial={{ opacity: 0, x: -20, backgroundColor: "transparent" }}
-                    whileInView={{ opacity: 1, x: 0, backgroundColor: "var(--color-surface)" }}
-                    viewport={{ once: false, amount: 0.8 }} // trigger when fully in view
-                    transition={{ duration: 0.4 }}
-                    className="relative group transition-colors shadow-sm p-4 rounded-2xl ml-[-16px] pl-[72px]"
-                  >
-                    {/* The active state border highlight */}
-                    <motion.div 
-                      className="absolute left-[16px] top-[16px] w-10 h-10 bg-surface border-2 border-border-subtle group-hover:border-accent rounded-xl flex items-center justify-center text-text-main group-hover:text-accent font-bold text-sm shadow-sm z-10 transition-colors duration-300"
-                      whileInView={{ borderColor: "#3F8F68", color: "#3F8F68", scale: 1.1, backgroundColor: "#E3F3E9" }}
-                      viewport={{ once: false, amount: 0.8 }}
-                    >
-                      {step.step}
-                    </motion.div>
-                    
-                    <h3 className="text-lg font-bold text-primary mb-2 pt-1.5 transition-colors group-hover:text-accent">
-                      {step.title}
-                    </h3>
-                    <p className="text-text-muted text-sm leading-relaxed font-medium">
-                      {step.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, scale: 0.98 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="hidden lg:block relative rounded-[2rem] overflow-hidden bg-primary aspect-[4/5] shadow-2xl border border-primary"
-          >
-            {/* Pattern instead of stock image */}
-            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary to-primary opacity-80" />
-            
-            <div className="absolute inset-0 p-12 flex flex-col">
-              <div className="flex justify-between items-start mb-auto">
-                <div className="text-white/50 text-sm font-bold uppercase tracking-widest">The Qura Experience</div>
-                <Image src="/logos/White Secondary Logo.svg" alt="Qura" width={100} height={30} className="opacity-50 h-6 w-auto" />
-              </div>
+          <div className="grid md:grid-cols-2 gap-12 h-[70vh]">
+            {/* Left side: Steps text */}
+            <div className="flex flex-col justify-center h-full gap-16 relative">
+               <div className="absolute left-6 top-10 bottom-10 w-0.5 bg-border-subtle rounded-full hidden md:block">
+                  <motion.div 
+                    className="w-full bg-accent rounded-full origin-top"
+                    style={{ scaleY: scrollYProgress, height: "100%" }}
+                  />
+               </div>
+
+               {PROCESS_STEPS.map((step, i) => (
+                  <motion.div 
+                    key={i} 
+                    className="relative pl-16 group"
+                    style={{ opacity: textOpacities[i] }}
+                  >
+                     <div className="absolute left-3.5 -translate-x-1/2 top-1 w-5 h-5 rounded-full border-2 border-surface bg-surface-mint z-10 flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-accent" />
+                     </div>
+                     <h3 className="text-2xl font-bold text-primary mb-2">{step.title}</h3>
+                     <p className="text-lg text-text-muted font-medium leading-relaxed max-w-md">{step.description}</p>
+                  </motion.div>
+               ))}
+            </div>
+
+            {/* Right side: Pinned Visual UI Storytelling */}
+            <div className="relative h-full flex items-center justify-center">
               
-              <div className="bg-white/5 rounded-2xl p-8 border border-white/10 shadow-2xl relative mt-8">
-                <div className="absolute -top-4 -left-4 text-6xl text-accent-light opacity-50 font-serif">"</div>
-                <p className="text-white text-xl font-medium leading-relaxed relative z-10">
-                  They explained everything so clearly, I finally felt confident making a decision about my family's future. The process was incredibly smooth.
-                </p>
-                <div className="mt-8 flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-accent flex items-center justify-center text-white font-bold border-2 border-white/20">
-                    RK
-                  </div>
+              {/* Step 0: Profile */}
+              <motion.div 
+                style={{ opacity: uiOpacity0, scale: scaleTransforms[0] }}
+                className="absolute inset-x-0 mx-auto max-w-sm bg-surface p-6 rounded-[2rem] shadow-2xl border border-border-subtle flex flex-col gap-4 origin-center"
+              >
+                <div className="flex items-center gap-4 mb-4 pb-4 border-b border-border-subtle">
+                  <div className="w-12 h-12 bg-bg-main rounded-full flex items-center justify-center text-primary font-bold">AJ</div>
                   <div>
-                    <div className="text-white font-bold">Rajesh K.</div>
-                    <div className="text-accent-light text-sm font-medium">Verified Customer</div>
+                    <h4 className="font-bold text-primary">Your Family Profile</h4>
+                    <p className="text-xs text-text-muted">Analyzing needs...</p>
                   </div>
                 </div>
-              </div>
+                {["Age: 32, Spouse: 30", "Income: \u20B925L/year", "Dependents: 1 Child", "Existing Cover: \u20B95L Corporate"].map((item, i) => (
+                  <div key={i} className="bg-bg-main p-3 rounded-xl text-sm font-medium text-text-main flex items-center gap-3">
+                     <Check size={16} className="text-accent" /> {item}
+                  </div>
+                ))}
+              </motion.div>
+
+              {/* Step 1: Recommendations */}
+              <motion.div 
+                style={{ opacity: uiOpacity1, scale: scaleTransforms[1] }}
+                className="absolute inset-x-0 mx-auto max-w-md bg-primary p-6 rounded-[2rem] shadow-2xl border border-primary origin-center"
+              >
+                 <div className="bg-[#10251C] p-6 rounded-2xl border border-white/10">
+                   <div className="flex justify-between mb-6">
+                      <div className="text-white/80 text-xs font-bold uppercase">Top Match Found</div>
+                      <div className="w-2 h-2 rounded-full bg-accent animate-pulse-dot" />
+                   </div>
+                   <h4 className="text-2xl font-bold text-white mb-2">HDFC Optima Restore</h4>
+                   <p className="text-accent-lime text-sm font-medium mb-6">Optimal based on your city tier</p>
+                   
+                   <div className="space-y-3">
+                     <div className="flex justify-between text-white/90 text-sm">
+                       <span>Coverage</span>
+                       <span className="font-bold">\u20B920 Lakhs</span>
+                     </div>
+                     <div className="h-px bg-white/10 w-full" />
+                     <div className="flex justify-between text-white/90 text-sm">
+                       <span>Premium</span>
+                       <span className="font-bold">\u20B91,250/mo</span>
+                     </div>
+                   </div>
+                 </div>
+              </motion.div>
+
+              {/* Step 2: Compare Plans */}
+              <motion.div 
+                style={{ opacity: uiOpacity2, scale: scaleTransforms[2] }}
+                className="absolute inset-x-0 mx-auto w-full max-w-lg bg-surface p-6 rounded-[2rem] shadow-2xl border border-border-subtle origin-center flex gap-4"
+              >
+                 <div className="flex-1 bg-bg-main p-4 rounded-xl border border-border-subtle relative">
+                    <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-bl-lg">QURA Pick</div>
+                    <div className="w-8 h-8 rounded bg-surface text-accent flex items-center justify-center shadow-sm mb-3"><HeartPulse size={16} /></div>
+                    <div className="font-bold text-primary text-sm mb-1">Max Secure</div>
+                    <div className="text-xs text-text-muted mb-4">Zero copay</div>
+                    <button className="w-full bg-primary text-white text-xs py-2 rounded-lg font-bold">Select</button>
+                 </div>
+                 
+                 <div className="flex-1 bg-surface p-4 rounded-xl border border-border-subtle opacity-70 scale-95 origin-left">
+                    <div className="w-8 h-8 rounded bg-surface-sage text-text-muted flex items-center justify-center shadow-sm mb-3"><ShieldAlert size={16} /></div>
+                    <div className="font-bold text-text-muted text-sm mb-1">Standard Plan</div>
+                    <div className="text-xs text-text-muted mb-4">20% copay</div>
+                    <button className="w-full bg-bg-main text-text-muted text-xs py-2 rounded-lg font-bold">Compare</button>
+                 </div>
+              </motion.div>
+
+              {/* Step 3: Success */}
+              <motion.div 
+                style={{ opacity: uiOpacity3, scale: scaleTransforms[3] }}
+                className="absolute inset-x-0 mx-auto max-w-sm bg-surface-sage p-8 rounded-[2rem] shadow-2xl border border-accent/20 origin-center text-center"
+              >
+                <div className="w-20 h-20 bg-accent rounded-full text-white flex items-center justify-center mx-auto mb-6 shadow-lg shadow-accent/30">
+                  <ShieldCheck size={40} />
+                </div>
+                <h4 className="text-2xl font-bold text-primary mb-2">Family Secured</h4>
+                <p className="text-text-muted font-medium mb-6">Your policy is active and stored in your QURA vault.</p>
+                <div className="bg-white rounded-xl p-4 shadow-sm text-left">
+                   <div className="text-xs text-text-muted mb-1">Next steps</div>
+                   <div className="font-bold text-primary text-sm flex items-center gap-2">
+                     <Check size={14} className="text-accent" /> Advisory support active
+                   </div>
+                </div>
+              </motion.div>
+
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

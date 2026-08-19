@@ -80,7 +80,7 @@ export default function Navbar() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden relative z-50 p-2 -mr-2 text-primary rounded-lg hover:bg-surface-soft transition-colors"
+            className="md:hidden relative z-50 p-2 -mr-2 text-primary rounded-lg hover:bg-bg-main transition-colors"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -115,7 +115,7 @@ export default function Navbar() {
             <div className="flex flex-col gap-4">
               <Link
                 href="#login"
-                className="text-center py-3 text-base font-medium text-primary bg-surface-soft hover:bg-surface-mint transition-colors rounded-lg"
+                className="text-center py-3 text-base font-medium text-primary bg-surface-mint hover:bg-bg-main transition-colors rounded-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Log in

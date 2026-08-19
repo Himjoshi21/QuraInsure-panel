@@ -1,87 +1,132 @@
-"use client";
+﻿"use client";
 
-import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
-import Image from "next/image";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { X, Check } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-const comparisonFeatures = [
-  { label: "Advice Quality", qura: "Unbiased & tailored to you", others: "Driven by high commissions" },
-  { label: "Spam Calls", qura: "Zero spam guarantee", others: "Constant promotional calls" },
-  { label: "Claims Support", qura: "Dedicated lifetime support team", others: "You're on your own" },
-  { label: "Pricing", qura: "Same as buying direct", others: "Hidden fees sometimes" },
-  { label: "Experience", qura: "100% digital & seamless", others: "Tedious paperwork" },
+const TRADITIONAL_ITEMS = [
+  "Confusing jargon",
+  "Too many options",
+  "Pushy sales calls",
+  "Hidden complexity",
+  "Zero claims support"
+];
+
+const QURA_ITEMS = [
+  "Expert guidance",
+  "Transparent comparison",
+  "Zero spam policy",
+  "No hidden fees",
+  "Lifetime claims support"
 ];
 
 export default function Comparison() {
-  return (
-    <section className="py-24 bg-primary text-text-inverse relative overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-      
-      <div className="container mx-auto px-6 max-w-5xl relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-extrabold mb-4 tracking-tight">
-            How we're different
-          </h2>
-          <p className="text-lg text-white/70 font-medium max-w-2xl mx-auto">
-            We built Qura because we were tired of how insurance was being sold.
-          </p>
-        </div>
+  const containerRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-        <div className="bg-white/5 rounded-[2rem] border border-white/10 overflow-hidden shadow-2xl">
-          <div className="grid grid-cols-12 border-b border-white/10 bg-primary/80 p-6 md:p-8 items-center">
-            <div className="col-span-12 md:col-span-4 hidden md:block">
-              <span className="text-sm uppercase tracking-wider font-bold text-white/70">Feature</span>
-            </div>
-            <div className="col-span-6 md:col-span-4 text-center md:text-left flex items-center justify-center md:justify-start gap-3">
-              <Image src="/logos/White Logomark.svg" alt="Qura" width={24} height={24} className="h-6 w-auto" />
-              <span className="text-xl font-bold text-white">Qura</span>
-            </div>
-            <div className="col-span-6 md:col-span-4 text-center md:text-left">
-              <span className="text-xl font-bold text-white/70">Others</span>
-            </div>
+  // Smooth color transitions
+  const backgroundColor = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], ["#F7F4EA", "#101A16", "#101A16", "#F7F4EA"]);
+  const headingColor = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], ["#101A16", "#FFFFFF", "#FFFFFF", "#101A16"]);
+  const subtextColor = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], ["#66716B", "#FFFFFFb3", "#FFFFFFb3", "#66716B"]);
+
+  // Staggered reveals for the checklist items (from 0.3 to 0.7 of scroll)
+  const itemOpacities = QURA_ITEMS.map((_, i) => {
+    const start = 0.3 + (i * 0.08);
+    return useTransform(scrollYProgress, [start, start + 0.1], [0, 1]);
+  });
+  
+  const itemY = QURA_ITEMS.map((_, i) => {
+    const start = 0.3 + (i * 0.08);
+    return useTransform(scrollYProgress, [start, start + 0.1], [20, 0]);
+  });
+
+  return (
+    <motion.section 
+      ref={containerRef} 
+      style={{ backgroundColor }}
+      className="relative h-[250vh]"
+    >
+      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        {/* Decorative Blur Backgrounds */}
+        <motion.div 
+          style={{ opacity: useTransform(scrollYProgress, [0.1, 0.3], [0, 1]) }}
+          className="absolute top-0 right-0 w-96 h-96 bg-accent/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" 
+        />
+        <motion.div 
+          style={{ opacity: useTransform(scrollYProgress, [0.1, 0.3], [0, 1]) }}
+          className="absolute bottom-0 left-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none" 
+        />
+
+        <div className="container mx-auto px-6 max-w-5xl relative z-10 w-full">
+          <div className="text-center mb-16">
+            <motion.h2 style={{ color: headingColor }} className="text-3xl md:text-5xl font-extrabold mb-6 tracking-tight">
+              Insurance doesn't have to be hard
+            </motion.h2>
+            <motion.p style={{ color: subtextColor }} className="text-lg font-medium">
+              See why thousands are choosing the QURA way.
+            </motion.p>
           </div>
-          
-          <div className="divide-y divide-white/10">
-            {comparisonFeatures.map((item, index) => (
-              <motion.div 
-                key={item.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                className="grid grid-cols-12 p-6 md:p-8 items-center hover:bg-white/5 transition-colors duration-300 group cursor-default"
-              >
-                <div className="col-span-12 md:col-span-4 mb-4 md:mb-0">
-                  <span className="text-base font-medium text-white/70 group-hover:text-white transition-colors">{item.label}</span>
-                </div>
-                <div className="col-span-6 md:col-span-4 pr-4 md:pr-0">
-                  <div className="flex items-start gap-2">
-                    <motion.div 
-                      initial={{ scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      transition={{ type: "spring", stiffness: 450, delay: (index * 0.1) + 0.15, damping: 15 }}
-                      className="shrink-0 mt-0.5 transform transition-transform duration-300 group-hover:scale-125 group-hover:-translate-y-0.5"
-                    >
-                      <Check size={20} className="text-accent-small" />
-                    </motion.div>
-                    <span className="text-sm md:text-base text-white group-hover:text-surface-pale transition-colors">{item.qura}</span>
-                  </div>
-                </div>
-                <div className="col-span-6 md:col-span-4 pl-4 md:pl-0 border-l border-white/10 md:border-none opacity-70 group-hover:opacity-100 transition-opacity">
-                  <div className="flex items-start gap-2">
-                    <div className="shrink-0 mt-0.5 transform transition-transform duration-300 group-hover:scale-110">
-                      <X size={20} className="text-red-400" />
+
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-12 relative">
+            
+            {/* VS Badge */}
+            <motion.div 
+              style={{ scale: useTransform(scrollYProgress, [0.2, 0.4], [0, 1]), opacity: useTransform(scrollYProgress, [0.2, 0.3], [0, 1]) }}
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-14 h-14 bg-surface rounded-full flex items-center justify-center text-primary font-bold shadow-xl border border-border-subtle z-20 hidden md:flex"
+            >
+              VS
+            </motion.div>
+
+            {/* Traditional Insurance */}
+            <motion.div 
+              style={{ opacity: useTransform(scrollYProgress, [0.1, 0.3], [0, 1]) }}
+              className="bg-white/5 backdrop-blur-md rounded-3xl p-8 md:p-10 border border-white/10"
+            >
+              <h3 className="text-xl font-bold text-white/50 mb-8 pb-4 border-b border-white/10">Traditional Platforms</h3>
+              <ul className="space-y-6">
+                {TRADITIONAL_ITEMS.map((item, i) => (
+                  <li key={i} className="flex items-center gap-4 text-white/70">
+                    <div className="w-6 h-6 rounded-full bg-red-500/20 flex items-center justify-center shrink-0">
+                      <X size={14} className="text-red-400" />
                     </div>
-                    <span className="text-sm md:text-base text-white/70">{item.others}</span>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                    <span className="font-medium text-lg">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* QURA */}
+            <motion.div 
+              style={{ opacity: useTransform(scrollYProgress, [0.1, 0.3], [0, 1]) }}
+              className="bg-surface rounded-3xl p-8 md:p-10 shadow-2xl border border-accent/30 relative overflow-hidden"
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+              
+              <h3 className="text-xl font-bold text-primary mb-8 pb-4 border-b border-border-subtle">The QURA Way</h3>
+              <ul className="space-y-6">
+                {QURA_ITEMS.map((item, i) => (
+                  <motion.li 
+                    key={i} 
+                    style={{ opacity: itemOpacities[i], y: itemY[i] }}
+                    className="flex items-center gap-4 text-primary"
+                  >
+                    <div className="w-6 h-6 rounded-full bg-cta text-primary flex items-center justify-center shrink-0 shadow-sm shadow-accent/30">
+                      <Check size={14} strokeWidth={3} />
+                    </div>
+                    <span className="font-bold text-lg">{item}</span>
+                  </motion.li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

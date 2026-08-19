@@ -18,13 +18,13 @@ export default function ImageContent() {
             transition={{ duration: 0.6 }}
             className="w-full lg:w-1/2"
           >
-            <div className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-surface-mint border border-slate-100 flex items-center justify-center p-8">
+            <div className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-bg-main border border-slate-100 flex items-center justify-center p-8">
               <div className="absolute inset-0 bg-grid-pattern opacity-50 mix-blend-multiply" />
               
               {/* Mock UI Card */}
               <div className="relative z-10 w-full max-w-sm bg-surface rounded-2xl shadow-xl border border-border-subtle p-6">
                 <div className="flex items-center gap-4 mb-6 pb-6 border-b border-border-subtle">
-                  <div className="w-12 h-12 bg-surface-pale rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-bg-main rounded-full flex items-center justify-center">
                     <CheckCircle2 size={24} className="text-accent" />
                   </div>
                   <div>
@@ -73,7 +73,7 @@ export default function ImageContent() {
                 "Escalation of unfairly rejected claims"
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-surface-pale flex items-center justify-center shrink-0">
+                  <div className="mt-1 w-5 h-5 rounded-full bg-bg-main flex items-center justify-center shrink-0">
                      <CheckCircle2 size={12} className="text-accent" />
                   </div>
                   <span className="text-text-muted font-medium">{item}</span>
@@ -83,7 +83,7 @@ export default function ImageContent() {
             
             <Link
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-surface-mint text-accent text-base font-semibold rounded-xl hover:bg-surface-pale transition-colors shadow-sm"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-bg-main text-accent text-base font-semibold rounded-xl hover:bg-bg-main transition-colors shadow-sm"
             >
               Learn about our claim support
             </Link>
@@ -99,7 +99,7 @@ export default function ImageContent() {
             transition={{ duration: 0.6 }}
             className="w-full lg:w-1/2"
           >
-            <div className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-surface-mint border border-slate-100 flex items-center justify-center p-8">
+            <div className="relative aspect-square md:aspect-[4/3] rounded-[2rem] overflow-hidden bg-bg-main border border-slate-100 flex items-center justify-center p-8">
                <div className="absolute inset-0 bg-dot-pattern opacity-30 mix-blend-multiply" />
                
                {/* Mock UI Card */}
@@ -117,7 +117,7 @@ export default function ImageContent() {
                      </div>
                    </div>
                    <div className="flex gap-4">
-                     <div className="w-1 bg-accent-small rounded-full shrink-0" />
+                     <div className="w-1 bg-accent-lime rounded-full shrink-0" />
                      <div>
                        <div className="text-xs text-white/70 font-bold mb-1 line-through">Jargon: PED waiting period of 36 months.</div>
                        <div className="text-sm text-primary font-medium">Simple: Pre-existing diseases are covered after 3 years.</div>
@@ -150,7 +150,7 @@ export default function ImageContent() {
                 "Personalized recommendations based on your profile"
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3">
-                  <div className="mt-1 w-5 h-5 rounded-full bg-surface-pale flex items-center justify-center shrink-0">
+                  <div className="mt-1 w-5 h-5 rounded-full bg-bg-main flex items-center justify-center shrink-0">
                      <CheckCircle2 size={12} className="text-accent" />
                   </div>
                   <span className="text-text-muted font-medium">{item}</span>

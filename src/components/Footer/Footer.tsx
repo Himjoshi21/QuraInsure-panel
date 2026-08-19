@@ -1,9 +1,9 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-white/70 pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-primary text-surface-sage pt-20 pb-10 border-t border-white/10">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
@@ -22,13 +22,13 @@ export default function Footer() {
               Simplifying insurance for everyone. Expert advice, zero spam, and lifetime claims support.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-surface/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white transition-colors">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-surface-sage hover:bg-accent hover:text-cta transition-colors">
                 <span>X</span>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-surface/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white transition-colors">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-surface-sage hover:bg-accent hover:text-cta transition-colors">
                 <span>In</span>
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-surface/10 flex items-center justify-center text-white/70 hover:bg-accent hover:text-white transition-colors">
+              <a href="#" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-surface-sage hover:bg-accent hover:text-cta transition-colors">
                 <span>Ig</span>
               </a>
             </div>
@@ -37,28 +37,28 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-bold mb-6">Products</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Term Life Insurance</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Health Insurance</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Corporate Plans</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Term Life Insurance</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Health Insurance</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Corporate Plans</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-bold mb-6">Company</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">About Us</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Careers</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Blog</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">About Us</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Careers</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Blog</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Contact</Link></li>
             </ul>
           </div>
           
           <div>
             <h4 className="text-white font-bold mb-6">Legal</h4>
             <ul className="space-y-4 text-sm">
-              <li><Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Terms of Service</Link></li>
-              <li><Link href="#" className="hover:text-white transition-colors">Refund Policy</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Privacy Policy</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Terms of Service</Link></li>
+              <li><Link href="#" className="text-link-muted hover:text-cta transition-colors">Refund Policy</Link></li>
             </ul>
           </div>
           
@@ -74,3 +74,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+

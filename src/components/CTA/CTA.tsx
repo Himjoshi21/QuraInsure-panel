@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -7,50 +7,74 @@ import { ArrowRight } from "lucide-react";
 
 export default function CTA() {
   return (
-    <section className="py-24 bg-surface">
-      <div className="container mx-auto px-6 max-w-5xl">
+    <section className="py-24 lg:py-32 bg-primary relative overflow-hidden border-t border-white/5">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,_var(--tw-gradient-stops))] from-accent/10 to-transparent opacity-60" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-surface-mint/5 to-transparent opacity-40" />
+      
+      <div className="container mx-auto px-6 max-w-4xl relative z-10 text-center flex flex-col items-center">
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative rounded-[2rem] overflow-hidden bg-primary text-text-inverse px-8 py-16 md:py-24 text-center shadow-2xl"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.15 }
+            }
+          }}
+          className="flex flex-col items-center w-full"
         >
-          {/* Decorative gradients */}
-          <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-accent/30 via-transparent to-transparent opacity-80" />
-            <div className="absolute inset-0 bg-dot-pattern opacity-10 mix-blend-overlay" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] w-96 h-96 pointer-events-none">
-              <Image src="/logos/White Logomark.svg" alt="Pattern" fill className="object-contain" />
-            </div>
-          </div>
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20, scale: 0.9 }, visible: { opacity: 1, y: 0, scale: 1 } }}
+            className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white/5 border border-white/10 mb-8"
+          >
+            <Image src="/logos/White Logomark.svg" alt="Qura" width={32} height={32} className="opacity-80" />
+          </motion.div>
           
-          <div className="relative z-10 max-w-2xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-extrabold mb-6 leading-[1.1] tracking-tight text-balance">
-              Ready to secure your family's future?
-            </h2>
-            <p className="text-lg md:text-xl text-white/80 mb-10 leading-relaxed font-medium">
-              Book a free consultation with our experts today. No spam, no hidden fees, just honest advice.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="#consultation"
-                className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cta text-primary hover:bg-cta-hover text-lg font-bold rounded-xl hover:bg-accent/90 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95"
-              >
-                Talk to an expert
-                <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="#faq"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-transparent text-text-inverse text-lg font-bold rounded-xl border border-white/20 hover:bg-surface/10 transition-all active:scale-95"
-              >
-                Read the FAQ
-              </Link>
+          <motion.h2 
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            className="text-4xl md:text-5xl lg:text-7xl font-extrabold mb-6 leading-[1.05] tracking-tight text-white text-balance"
+          >
+            Not sure which insurance <br className="hidden md:block"/> is right for you?
+          </motion.h2>
+          
+          <motion.p 
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            className="text-lg md:text-xl text-surface-sage mb-12 leading-relaxed font-medium max-w-2xl mx-auto"
+          >
+            Stop guessing and start planning. Get unbiased, expert recommendations tailored specifically to your family's financial needs.
+          </motion.p>
+          
+          <motion.div 
+            variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+            className="flex flex-col sm:flex-row gap-4 justify-center"
+          >
+            <Link
+              href="#consultation"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cta text-primary text-lg font-bold rounded-xl hover:bg-cta-hover transition-all duration-300 shadow-xl shadow-cta/20 hover:-translate-y-1 active:scale-95"
+            >
+              Talk to a QURA expert
+              <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+          
+          {/* Subtle Floating UI */}
+          <motion.div 
+            variants={{ hidden: { opacity: 0, scale: 0.9, x: 20 }, visible: { opacity: 1, scale: 1, x: 0 } }}
+            className="hidden md:flex absolute top-12 right-12 bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-2xl items-center gap-3 animate-float"
+          >
+            <div className="w-10 h-10 rounded-full bg-accent border-2 border-white/20 flex items-center justify-center overflow-hidden">
+               <Image src="/logos/White Logomark.svg" alt="Advisor" width={16} height={16} />
             </div>
-          </div>
+            <div className="text-left">
+               <div className="text-white text-sm font-bold">Expert Available</div>
+               <div className="text-accent-lime text-[10px] font-bold uppercase tracking-widest">Free Consultation</div>
+            </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
   );
 }
+
