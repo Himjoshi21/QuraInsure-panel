@@ -93,7 +93,7 @@ export default function Services() {
                 <div className="flex justify-between items-start mb-6 pt-2">
                   <div>
                     <div className="text-xs font-bold text-text-muted uppercase tracking-wider mb-1">Total Coverage</div>
-                    <div className="text-3xl font-extrabold text-primary">\u20B92.0 Cr</div>
+                    <div className="text-3xl font-extrabold text-primary">{"\u20B9"}2.0 Cr</div>
                   </div>
                 </div>
                 
@@ -101,7 +101,7 @@ export default function Services() {
                   <div className="bg-bg-main p-4 rounded-xl border border-border-subtle">
                     <div className="flex justify-between items-center mb-2">
                       <span className="text-sm font-bold text-primary">Base Cover</span>
-                      <span className="text-sm font-bold text-accent">\u20B91.5 Cr</span>
+                      <span className="text-sm font-bold text-accent">{"\u20B9"}1.5 Cr</span>
                     </div>
                     <div className="w-full h-1.5 bg-border-subtle rounded-full overflow-hidden">
                       <div className="w-[75%] h-full bg-primary" />
@@ -113,7 +113,7 @@ export default function Services() {
                       <span className="text-sm font-bold text-primary flex items-center gap-2">
                         <CheckCircle2 size={14} className="text-accent" /> Critical Illness
                       </span>
-                      <span className="text-sm font-bold text-accent">\u20B950 L</span>
+                      <span className="text-sm font-bold text-accent">{"\u20B9"}50 L</span>
                     </div>
                     <div className="w-full h-1.5 bg-accent/20 rounded-full overflow-hidden relative z-10">
                       <div className="w-full h-full bg-accent" />

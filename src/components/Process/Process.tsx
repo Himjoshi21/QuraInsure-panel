@@ -108,12 +108,12 @@ export default function Process() {
                    <div className="space-y-3">
                      <div className="flex justify-between text-white/90 text-sm">
                        <span>Coverage</span>
-                       <span className="font-bold">\u20B920 Lakhs</span>
+                       <span className="font-bold">{"\u20B9"}20 Lakhs</span>
                      </div>
                      <div className="h-px bg-white/10 w-full" />
                      <div className="flex justify-between text-white/90 text-sm">
                        <span>Premium</span>
-                       <span className="font-bold">\u20B91,250/mo</span>
+                       <span className="font-bold">{"\u20B9"}1,250/mo</span>
                      </div>
                    </div>
                  </div>

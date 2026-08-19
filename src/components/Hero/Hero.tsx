@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -103,10 +103,10 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.4, type: "spring", stiffness: 100, damping: 20 }}
           className="relative w-full max-w-5xl mx-auto h-[400px] md:h-[600px] -mb-20 md:-mb-32 z-20"
         >
-          {/* Floating UI Card: Coverage */}
+          {/* Floating UI Card: Coverage â€” white card on cream bg */}
           <motion.div 
             style={{ x: leftCardX, y: leftCardY }}
-            className="absolute -left-6 md:-left-12 top-20 md:top-32 bg-surface rounded-2xl p-4 md:p-5 shadow-2xl border border-border-subtle z-30 w-48 md:w-64 hidden sm:block"
+            className="absolute -left-6 md:-left-12 top-20 md:top-32 bg-surface rounded-2xl p-4 md:p-5 shadow-xl border border-border-subtle z-30 w-48 md:w-64 hidden sm:block"
           >
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-full bg-surface-sage flex items-center justify-center text-accent">
@@ -114,11 +114,11 @@ export default function Hero() {
               </div>
               <div>
                 <div className="text-xs text-text-muted font-bold uppercase tracking-wider">Total Cover</div>
-                <div className="text-lg font-extrabold text-primary">₹3.5 Cr</div>
+                <div className="text-lg font-extrabold text-primary">{"\u20B9"}3.5 Cr</div>
               </div>
             </div>
             <div className="h-2 w-full bg-border-subtle rounded-full overflow-hidden">
-               <div className="h-full bg-accent w-[85%]" />
+               <div className="h-full bg-cta w-[85%]" />
             </div>
           </motion.div>
 
@@ -179,28 +179,30 @@ export default function Hero() {
                   
                   {/* Cards inside dashboard */}
                   <div className="grid sm:grid-cols-2 gap-4">
-                     <div className="bg-surface border border-accent rounded-xl p-5 shadow-sm relative overflow-hidden">
+                     {/* Top match card â€” white with sage-bordered accent */}
+                     <div className="bg-surface border-2 border-accent/30 rounded-xl p-5 shadow-sm relative overflow-hidden">
                         <div className="absolute top-0 right-0 bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-bl-lg">98% Match</div>
                         <div className="w-8 h-8 rounded bg-surface-sage text-accent flex items-center justify-center mb-4">
                            <Activity size={16} />
                         </div>
                         <h3 className="font-bold text-primary mb-1">HDFC Optima Secure</h3>
-                        <p className="text-xs text-text-muted font-medium mb-4">Health Insurance � ₹20L Cover</p>
+                        <p className="text-xs text-text-muted font-medium mb-4">Health Insurance Â· {"\u20B9"}20L Cover</p>
                         <div className="flex justify-between items-center pt-3 border-t border-border-subtle">
-                           <div className="text-sm font-bold text-primary">₹1,450<span className="text-[10px] text-text-muted">/mo</span></div>
+                           <div className="text-sm font-bold text-primary">{"\u20B9"}1,450<span className="text-[10px] text-text-muted">/mo</span></div>
                            <button className="text-[10px] font-bold bg-cta text-primary px-3 py-1.5 rounded hover:bg-cta-hover transition-colors">Select</button>
                         </div>
                      </div>
                      
+                     {/* Secondary card â€” white */}
                      <div className="bg-surface border border-border-subtle rounded-xl p-5 shadow-sm">
-                        <div className="w-8 h-8 rounded bg-surface-sage text-accent flex items-center justify-center mb-4">
+                        <div className="w-8 h-8 rounded bg-bg-main text-accent-muted flex items-center justify-center mb-4">
                            <Users size={16} />
                         </div>
                         <h3 className="font-bold text-primary mb-1">Max Life Smart Secure</h3>
-                        <p className="text-xs text-text-muted font-medium mb-4">Term Life � ₹2 Cr Cover</p>
+                        <p className="text-xs text-text-muted font-medium mb-4">Term Life · {"\u20B9"}2 Cr Cover</p>
                         <div className="flex justify-between items-center pt-3 border-t border-border-subtle">
-                           <div className="text-sm font-bold text-primary">₹2,100<span className="text-[10px] text-text-muted">/mo</span></div>
-                           <button className="text-[10px] font-bold border border-border-subtle text-primary px-3 py-1.5 rounded hover:bg-surface-sage transition-colors">Compare</button>
+                           <div className="text-sm font-bold text-primary">{"\u20B9"}2,100<span className="text-[10px] text-text-muted">/mo</span></div>
+                           <button className="text-[10px] font-bold border border-border-subtle text-primary px-3 py-1.5 rounded hover:bg-bg-main transition-colors">Compare</button>
                         </div>
                      </div>
                   </div>
