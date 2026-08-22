@@ -12,9 +12,9 @@ export default function Footer() {
               <Image
                 src="/logos/White Primary Logo.svg"
                 alt="Qura Insure Logo"
-                width={140}
-                height={40}
-                className="h-8 w-auto"
+                width={190}
+                height={64}
+                className="h-14 w-auto"
                 style={{ width: "auto" }}
               />
             </Link>

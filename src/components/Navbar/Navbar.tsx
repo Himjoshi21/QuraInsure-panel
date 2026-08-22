@@ -41,9 +41,9 @@ export default function Navbar() {
             <Image
               src="/logos/Colour Primary Logo.svg"
               alt="Qura Insure Logo"
-              width={140}
-              height={40}
-              className="h-8 w-auto md:h-9 transition-all duration-300"
+              width={190}
+              height={64}
+              className="h-12 w-auto md:h-14 transition-all duration-300"
               style={{ width: "auto" }}
               priority
             />

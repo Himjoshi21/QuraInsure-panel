@@ -55,6 +55,19 @@
   .section-shell { border-radius: 2rem; border: 1px solid var(--color-border-subtle); background: rgba(255,255,255,.76); box-shadow: 0 24px 70px rgba(11,36,66,.07); }
 }
 
+@keyframes qura-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) rotate(-1deg); }
+  50% { transform: translate3d(0, -12px, 0) rotate(1deg); }
+}
+
+@keyframes qura-glow {
+  0%, 100% { box-shadow: 0 20px 60px rgba(11,36,66,.08); }
+  50% { box-shadow: 0 28px 80px rgba(192,218,111,.24); }
+}
+
+.qura-drift { animation: qura-drift 7s ease-in-out infinite; }
+.qura-glow { animation: qura-glow 4s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
