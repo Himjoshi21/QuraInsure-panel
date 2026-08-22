@@ -29,7 +29,7 @@ export default function Hero() {
   const words = "Insurance that actually makes sense.".split(" ");
 
   return (
-    <section ref={containerRef} className="relative pt-32 md:pt-40 pb-0 overflow-hidden bg-bg-main">
+    <section ref={containerRef} className="relative pt-32 md:pt-40 pb-0 overflow-hidden bg-bg-main min-h-screen">
       {/* Background gradients */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1200px] h-[600px] hidden pointer-events-none" />
       <div className="absolute inset-0 bg-dot-pattern opacity-[0.15] mix-blend-multiply pointer-events-none" />
@@ -44,7 +44,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-border-subtle shadow-sm mb-8"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/85 border border-border-subtle shadow-sm mb-7"
           >
             <div className="flex -space-x-1.5">
                {[1,2,3].map(i => (
@@ -56,14 +56,14 @@ export default function Hero() {
             <span className="text-xs font-bold text-primary">Trusted by 10,000+ families</span>
           </motion.div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-primary leading-[1.05] mb-6 max-w-5xl text-balance flex flex-wrap justify-center gap-x-3 gap-y-2">
+          <h1 className="text-5xl md:text-7xl lg:text-[5.7rem] font-extrabold tracking-[-.055em] text-primary leading-[.98] mb-7 max-w-5xl text-balance flex flex-wrap justify-center gap-x-3 gap-y-2">
             {words.map((word, i) => (
               <motion.span
                 key={i}
                 initial={{ opacity: 0, y: 30, filter: "blur(8px)" }}
                 animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 transition={{ duration: 0.6, delay: i * 0.1, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className={word === "actually" || word === "makes" || word === "sense." ? "text-accent" : "text-primary"}
+                className={word === "actually" || word === "makes" || word === "sense." ? "font-editorial text-accent" : "text-primary"}
               >
                 {word}
               </motion.span>
@@ -87,7 +87,7 @@ export default function Hero() {
           >
             <Link
               href="#consultation"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cta text-primary text-lg font-bold rounded-xl hover:bg-cta-hover transition-all shadow-xl shadow-cta/20 hover:-translate-y-1 active:scale-95"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-primary text-white text-lg font-bold rounded-full hover:bg-dark transition-all shadow-xl shadow-primary/20 hover:-translate-y-1 active:scale-95"
             >
               Talk to a QURA expert
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />
@@ -140,7 +140,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Main Dashboard Window */}
-          <div className="absolute inset-0 bg-white rounded-t-[2rem] md:rounded-t-[3rem] border border-border-subtle shadow-2xl overflow-hidden flex flex-col">
+          <div className="absolute inset-0 bg-white rounded-t-[2rem] md:rounded-t-[3rem] border-[8px] border-white shadow-[0_30px_90px_rgba(11,36,66,.22)] overflow-hidden flex flex-col">
             {/* Window Header */}
             <div className="h-12 border-b border-border-subtle flex items-center px-6 bg-bg-main gap-2 shrink-0">
                <div className="flex gap-1.5">

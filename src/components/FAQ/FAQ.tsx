@@ -29,8 +29,8 @@ export default function FAQ() {
                 key={index} 
                 initial={false}
                 animate={{ 
-                   backgroundColor: isOpen ? "#D7E3D3" : "#FFFFFF",
-                   borderColor: isOpen ? "#438B68" : "var(--color-border-subtle)" 
+                   backgroundColor: isOpen ? "#EEF4DC" : "#FFFFFF",
+                   borderColor: isOpen ? "#8BA637" : "var(--color-border-subtle)" 
                 }}
                 transition={{ duration: 0.3 }}
                 className="rounded-2xl border shadow-sm overflow-hidden"

@@ -52,7 +52,7 @@ export default function CTA() {
           >
             <Link
               href="#consultation"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cta text-primary text-lg font-bold rounded-xl hover:bg-cta-hover transition-all duration-300 shadow-xl shadow-cta/20 hover:-translate-y-1 active:scale-95"
+            className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-cta text-primary text-lg font-bold rounded-full hover:bg-cta-hover transition-all duration-300 shadow-xl shadow-cta/20 hover:-translate-y-1 active:scale-95"
             >
               Talk to a QURA expert
               <ArrowRight size={20} className="transition-transform group-hover:translate-x-1" />

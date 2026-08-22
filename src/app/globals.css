@@ -1,51 +1,60 @@
 @import "tailwindcss";
 
 @theme {
-  /* FINAL QURA PALETTE — Warm Cream Dominant, Green as Accent Only */
-  --color-primary: #101A16;
-  --color-dark: #101A16;
-  --color-accent: #3F795C;
-  --color-accent-muted: #71816A;
-  --color-cta: #78C89A;
-  --color-cta-hover: #61B783;
-  --color-accent-lime: #C6D77B;
+  /* Palette extracted from the supplied QURA logo. */
+  --color-primary: #0B2442;
+  --color-dark: #07182C;
+  --color-accent: #557B21;
+  --color-accent-muted: #52708D;
+  --color-cta: #C0DA6F;
+  --color-cta-hover: #D0E78A;
+  --color-accent-lime: #C0DA6F;
 
   /* bg-main = Warm Cream (60-65% of page) */
-  --color-bg-main: #F7F4EA;
+  --color-bg-main: #F6F5F1;
   /* surface = Pure White (20% — cards, UI, dashboard) */
   --color-surface: #FFFFFF;
   /* surface-sage = Pale sage (selected/featured ONLY — 7%) */
-  --color-surface-sage: #D7E3D3;
+  --color-surface-sage: #EEF4DC;
   /* surface-mint = white alias — prevents accidental green panels */
   --color-surface-mint: #FFFFFF;
 
-  --color-text-main: #101A16;
-  --color-text-muted: #66716B;
+  --color-text-main: #0B2442;
+  --color-text-muted: #5E6D7C;
   --color-text-inverse: #FFFFFF;
 
-  --color-border-subtle: #DDE0DA;
+  --color-border-subtle: #DCE2E7;
 
-  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
 @layer base {
   html { scroll-behavior: smooth; }
   body {
     @apply bg-bg-main text-text-main font-sans antialiased selection:bg-surface-sage selection:text-primary;
+    background-image: radial-gradient(circle at 15% 0%, rgba(192,218,111,.11), transparent 24rem);
   }
+  a, button { outline-offset: 4px; }
+  :focus-visible { outline: 3px solid #8BA637; }
 }
 
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .bg-dot-pattern {
-    background-image: radial-gradient(circle, #DDE0DA 1px, transparent 1px);
+    background-image: radial-gradient(circle, #CAD3DC 1px, transparent 1px);
     background-size: 24px 24px;
   }
   .bg-grid-pattern {
-    background-image: linear-gradient(to right, #D7E3D3 1px, transparent 1px),
-      linear-gradient(to bottom, #D7E3D3 1px, transparent 1px);
+    background-image: linear-gradient(to right, rgba(192,218,111,.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(192,218,111,.12) 1px, transparent 1px);
     background-size: 40px 40px;
   }
   .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
   .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .font-editorial { font-family: Georgia, "Times New Roman", serif; font-style: italic; font-weight: 500; }
+  .section-shell { border-radius: 2rem; border: 1px solid var(--color-border-subtle); background: rgba(255,255,255,.76); box-shadow: 0 24px 70px rgba(11,36,66,.07); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }

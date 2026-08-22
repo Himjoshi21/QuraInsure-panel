@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-primary text-surface-sage pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-primary bg-grid-pattern text-surface-sage pt-20 pb-10 border-t border-white/10">
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           
