@@ -77,20 +77,20 @@ export const BENEFITS = [
 export const TESTIMONIALS = [
   {
     quote: "Qura made buying insurance incredibly simple. Their advisors were patient and explained everything in detail.",
-    name: "Sarah Jenkins",
-    designation: "Product Manager",
+    name: "Ananya Sharma",
+    designation: "Product Manager, Bengaluru",
     rating: 5,
   },
   {
     quote: "I was confused about which health policy to pick. Qura helped me compare and choose the right one without any pressure.",
-    name: "David Chen",
-    designation: "Software Engineer",
+    name: "Rohan Mehta",
+    designation: "Software Engineer, Pune",
     rating: 5,
   },
   {
     quote: "The claims process was exactly as they promised. Smooth, fast, and completely hassle-free. Highly recommended!",
-    name: "Priya Patel",
-    designation: "Business Owner",
+    name: "Meera Iyer",
+    designation: "Business Owner, Chennai",
     rating: 5,
   },
 ];

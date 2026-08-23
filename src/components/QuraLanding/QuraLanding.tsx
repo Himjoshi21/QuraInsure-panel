@@ -5,8 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, BadgeCheck, CheckCircle2, ChevronLeft, ChevronRight, HeartHandshake, LifeBuoy, Minus, Plus, Quote, ShieldCheck, Sparkles } from "lucide-react";
-import { BENEFITS, FAQS, PROCESS_STEPS, SERVICES, STATS, TESTIMONIALS } from "@/data/content";
+import { BENEFITS, FAQS, PROCESS_STEPS, STATS, TESTIMONIALS } from "@/data/content";
 import AboutUs from "@/components/AboutUs/AboutUs";
+import CoveragePlans from "@/components/CoveragePlans/CoveragePlans";
 
 const reveal = {
   initial: { opacity: 0, y: 36 },
@@ -14,27 +15,6 @@ const reveal = {
   viewport: { once: true, margin: "-80px" },
   transition: { duration: 0.65, ease: "easeOut" as const },
 };
-
-const serviceDetails = [
-  {
-    eyebrow: "Best for income protection",
-    highlights: ["Flexible cover duration", "Optional critical illness benefit", "Affordable high-value protection"],
-    metric: "Up to ₹5 Cr",
-    metricLabel: "recommended cover options",
-  },
-  {
-    eyebrow: "Best for medical security",
-    highlights: ["Cashless hospital network", "Family floater choices", "No-claim bonus guidance"],
-    metric: "24/7",
-    metricLabel: "health claims assistance",
-  },
-  {
-    eyebrow: "Best for growing teams",
-    highlights: ["Custom employee benefits", "Simple digital onboarding", "Dedicated account support"],
-    metric: "One plan",
-    metricLabel: "built around your workforce",
-  },
-];
 
 export default function QuraLanding() {
   const [activeFaq, setActiveFaq] = useState(0);
@@ -72,45 +52,7 @@ export default function QuraLanding() {
         </div>
       </section>
 
-      <section id="products" className="py-28 md:py-36">
-        <div className="mx-auto max-w-7xl px-6 md:px-10">
-          <motion.div {...reveal} className="mx-auto max-w-3xl text-center"><span className="text-sm font-bold uppercase tracking-[.2em] text-accent">Coverage, simplified</span><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">Protection for every <span className="font-editorial">stage of life</span></h2><p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-text-muted">Smart, straightforward plans chosen around your needs—not around sales targets.</p></motion.div>
-          <div className="mt-16 grid gap-6 lg:grid-cols-12">
-            {SERVICES.map((service, index) => {
-              const details = serviceDetails[index];
-              return (
-                <motion.article
-                  initial={{ opacity: 0, y: 50, scale: .97 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                  viewport={{ once: true, margin: "-70px" }}
-                  transition={{ duration: .65, delay: index * .1 }}
-                  whileHover={{ y: -8 }}
-                  key={service.title}
-                  className={`${index === 0 ? "lg:col-span-7" : index === 1 ? "lg:col-span-5" : "lg:col-span-12"} group relative min-h-[500px] overflow-hidden rounded-[2rem] border border-primary/10 bg-white p-8 shadow-[0_24px_70px_rgba(11,36,66,.06)] md:p-10`}
-                >
-                  <motion.div animate={{ x: [0, 22, 0], y: [0, -14, 0] }} transition={{ duration: 7 + index, repeat: Infinity, ease: "easeInOut" }} className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-cta/25 blur-3xl" />
-                  <div className="absolute inset-0 opacity-0 transition duration-500 group-hover:opacity-100 bg-[radial-gradient(circle_at_80%_10%,rgba(192,218,111,.16),transparent_38%)]" />
-                  <div className={`${index === 2 ? "md:grid md:grid-cols-[1.15fr_.85fr] md:gap-14" : ""} relative flex h-full flex-col`}>
-                    <div className="flex flex-1 flex-col">
-                      <motion.div whileHover={{ rotate: 10, scale: 1.08 }} className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary text-cta shadow-lg"><ShieldCheck /></motion.div>
-                      <span className="mt-10 text-xs font-bold uppercase tracking-[.2em] text-accent">{details.eyebrow}</span>
-                      <div className="mt-3 flex items-center gap-3"><span className="text-xs font-bold tracking-[.2em] text-accent-muted">0{index + 1}</span><span className="h-px w-10 bg-primary/15" /></div>
-                      <h3 className="mt-4 text-3xl font-semibold tracking-tight md:text-4xl">{service.title}</h3>
-                      <p className="mt-4 max-w-xl leading-relaxed text-text-muted">{service.description}</p>
-                      <ul className="mt-7 space-y-3">{details.highlights.map((item, itemIndex) => <motion.li initial={{ opacity: 0, x: -14 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: .25 + itemIndex * .08 }} key={item} className="flex items-center gap-3 text-sm font-semibold"><span className="flex h-6 w-6 items-center justify-center rounded-full bg-surface-sage text-accent"><CheckCircle2 size={14} /></span>{item}</motion.li>)}</ul>
-                    </div>
-                    <div className={`${index === 2 ? "mt-10 md:mt-0 md:self-stretch" : "mt-9"} flex flex-col justify-between rounded-[1.5rem] border border-primary/10 bg-[#f7f8f2] p-6`}>
-                      <div><div className="text-xs font-bold uppercase tracking-[.18em] text-text-muted">Quick view</div><div className="mt-3 text-3xl font-semibold tracking-tight text-primary">{details.metric}</div><div className="mt-1 text-sm text-text-muted">{details.metricLabel}</div></div>
-                      <div className="mt-7 h-1.5 overflow-hidden rounded-full bg-primary/10"><motion.div initial={{ width: 0 }} whileInView={{ width: `${76 + index * 8}%` }} viewport={{ once: true }} transition={{ duration: 1.1, delay: .35 }} className="h-full rounded-full bg-cta" /></div>
-                    </div>
-                    <Link href={service.href} className="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-bold text-white transition group-hover:bg-dark">Explore this cover <ArrowRight size={17} className="transition-transform group-hover:translate-x-1" /></Link>
-                  </div>
-                </motion.article>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      <CoveragePlans />
 
       <section id="how-it-works" className="bg-white py-28 md:py-36">
         <div className="mx-auto max-w-7xl px-6 md:px-10"><motion.div {...reveal} className="grid gap-14 lg:grid-cols-[.85fr_1.15fr] lg:items-start"><div className="lg:sticky lg:top-32"><span className="text-sm font-bold uppercase tracking-[.2em] text-accent">How it works</span><h2 className="mt-5 text-4xl font-semibold leading-tight tracking-[-.04em] md:text-6xl">From confused to <span className="font-editorial">confident</span></h2><p className="mt-6 max-w-lg text-lg leading-relaxed text-text-muted">A thoughtful process that makes choosing and using insurance feel refreshingly simple—from your first conversation to every future claim.</p><div className="mt-8 space-y-3 text-sm font-semibold">{["Free needs assessment", "Side-by-side plan comparison", "Ongoing claims support"].map((item) => <div key={item} className="flex items-center gap-3"><CheckCircle2 className="text-accent" size={19} />{item}</div>)}</div><Link href="#contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-4 font-bold text-white">Start your plan <ArrowRight size={18} /></Link></div><div className="space-y-4">{PROCESS_STEPS.map((step, index) => <motion.div initial={{ opacity: 0, x: 45 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: index * .08 }} key={step.step} className="group grid gap-5 rounded-[1.75rem] border border-primary/10 bg-[#f8f8f5] p-7 transition hover:-translate-y-1 hover:shadow-xl md:grid-cols-[76px_1fr] md:p-9"><div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary text-xl font-semibold text-cta transition duration-500 group-hover:rotate-6 group-hover:scale-110">{step.step}</div><div><h3 className="text-2xl font-semibold">{step.title}</h3><p className="mt-3 leading-relaxed text-text-muted">{step.description}</p></div></motion.div>)}</div></motion.div></div>
